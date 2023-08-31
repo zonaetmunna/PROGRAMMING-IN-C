@@ -265,3 +265,91 @@ Time t1 = {10, 30};
 ```
 
 ### Exercise:
+
+# Union
+
+### What is a Union?
+
+A union is a composite data type in C that allows you to store different types of data in the same memory location. Unlike structures, which allocate memory for each member separately, unions allocate memory that is large enough to hold the largest member, and all members share the same memory location.
+
+### Syntax of Union Declaration
+
+The syntax for declaring a union in C is as follows:
+
+```
+union UnionName {
+// Member declarations
+DataType member1;
+DataType member2;
+// ...
+};
+```
+
+Here's an example of a union declaration:
+
+```
+union Data {
+int intValue;
+float floatValue;
+char charValue;
+};
+```
+
+### Union Members and Memory
+
+In a union, all members share the same memory space, so only one member can hold a value at any given time. The memory allocated for the union is equal to the size of its largest member.
+
+### Accessing Union Members
+
+You access union members in the same way you would access structure members, using the dot (.) operator:
+
+```
+union Data data;
+data.intValue = 42;
+printf("Value: %d\n", data.intValue);
+
+data.floatValue = 3.14;
+printf("Value: %f\n", data.floatValue);
+```
+
+### Using Unions for Different Data Types
+
+Unions are particularly useful when you need to store different data types in the same memory space, but only one type is used at a time. For example, a variant data type:
+
+```
+union Variant {
+    int intValue;
+    float floatValue;
+    char stringValue[20];
+};
+
+union Variant var;
+var.intValue = 42;
+printf("Value: %d\n", var.intValue);
+
+var.floatValue = 3.14;
+printf("Value: %f\n", var.floatValue);
+
+strcpy(var.stringValue, "Hello");
+printf("Value: %s\n", var.stringValue);
+```
+
+### Differences Between Unions and Structures
+
+- Memory Allocation: Unions allocate memory based on the largest member, while structures allocate memory for each member separately.
+- Memory Usage: Unions use less memory when compared to structures in cases where only one member is active.
+- Accessing Members: In a union, only one member should be accessed at a time; in a structure, all members can be accessed simultaneously.
+
+### Use Cases for Unions
+
+- Storing different data types in a single variable for specific cases.
+- Efficient memory utilization when only one member is active at a time.
+- Implementing variant data types or tagged unions.
+
+### Caution with Unions
+
+Be careful when using unions to avoid reading the wrong member if it's not properly managed.
+Accessing the wrong member can lead to unexpected behavior.
+In summary, unions in C programming provide a way to store different data types in the same memory location, which can be useful for cases where memory efficiency and flexibility are important. Just like structures, unions are a powerful tool for managing complex data, and understanding their usage can greatly enhance your programming skills.
+
+## Exercise
